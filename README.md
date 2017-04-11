@@ -1,7 +1,5 @@
 # LivestreamWeb
-[![CI Status]
-   (http://img.shields.io/travis/roamlrs/roamlrs.svg?style=flat)]
-   (https://travis-ci.org/roamlrs/roamlrs)
+[![Build Status](https://travis-ci.org/live-vstream/webapp_angular.svg?branch=master)](https://travis-ci.org/live-vstream/webapp_angular)
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.0.0.
 
