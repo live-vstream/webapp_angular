@@ -6,6 +6,7 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class AuthService {
   private currentUser = null;
+  public isLoggedIn = false;
   private authApiUrl: string = "http://localhost:3000/api/auth";
 
   constructor(public http: Http) { }
@@ -22,6 +23,12 @@ export class AuthService {
 
   getUser() {
     return this.currentUser;
+  }
+  public setUser(userObj) {
+    if(userObj != null) {
+      this.isLoggedIn = true;
+    }
+    this.currentUser = userObj;
   }
 
 }

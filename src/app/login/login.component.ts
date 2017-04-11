@@ -45,6 +45,8 @@ export class LoginComponent implements OnInit {
           this.snackbar.open("Invalid email/password.");
         } else {
           this.snackbar.open("Success!");
+          console.log("user data is " + data);
+          this.auth.setUser(data);
           // now we can safely use this.router to navigate to dashboard
           this.router.navigateByUrl('/dashboard')
         }
