@@ -11,8 +11,8 @@ declare var red5prosdk: any;
 
 export class DashboardComponent implements OnInit {
 
-  private tokenInput: string;
-  private streamInitialized: boolean = false;
+  public tokenInput: string;
+  public streamInitialized: boolean = false;
 
   constructor() { }
 
