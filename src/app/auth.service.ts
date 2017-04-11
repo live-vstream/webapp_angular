@@ -16,7 +16,8 @@ export class AuthService {
       email: email,
       password: password
     };
-    return this.http.post(this.authApiUrl + "/login", body).map(res => res.json());
+    return this.http.post(this.authApiUrl + "/login", body)
+            .map(res => res.json());
   }
 
   getUser() {

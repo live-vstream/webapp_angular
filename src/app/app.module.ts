@@ -10,6 +10,7 @@ import { CustomMaterialModule } from './custom-material/custom-material.module'
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
+import { AuthService } from './auth.service';
 
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent }
@@ -29,7 +30,7 @@ const appRoutes: Routes = [
     MaterialModule.forRoot(),
     CustomMaterialModule
   ],
-  providers: [],
+  providers: [ AuthService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

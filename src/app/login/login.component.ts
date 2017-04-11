@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
 import { MdSnackBar, MdSpinner } from '@angular/material';
-
+import { Observable } from 'rxjs/Rx';
 
 @Component({
   selector: 'app-login',
@@ -16,7 +17,7 @@ export class LoginComponent implements OnInit {
   public formIsValid: boolean = true;
   public isLoading: boolean = false;
 
-  constructor(public auth: AuthService, public snackbar: MdSnackBar) {
+  constructor(public auth: AuthService, public snackbar: MdSnackBar, public router: Router) {
 
   }
 
@@ -31,15 +32,24 @@ export class LoginComponent implements OnInit {
       this.formIsValid = true;
       this.isLoading = true;
 
-      // start a login request using auth here
-      this.auth.login(this.inputEmail, this.inputPassword).subscribe(data => {
+      // define a function to be called on error and on success
+      this.auth.login(this.inputEmail, this.inputPassword).catch(err => {
         this.isLoading = false;
-        if(data) {
-          data.json();
+        console.log("error is " + err);
+        this.snackbar.open("Invalid email/password.");
+        return Observable.throw(err);
+      })
+      .subscribe(data => {
+        this.isLoading = false;
+        if(data.status == 401) {
+          this.snackbar.open("Invalid email/password.");
         } else {
-          this.snackbar.open("Unknown error. Please try again.");
+          this.snackbar.open("Success!");
+          // now we can safely use this.router to navigate to dashboard
         }
       });
+
+
     }
   }
 
