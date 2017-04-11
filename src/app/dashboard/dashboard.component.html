@@ -1,3 +1,15 @@
 <p>
-  dashboard works!
+  <md-card>
+    <md-input-container>
+      <input mdInput placeholder="Stream Token" type="text" [(ngModel)]="tokenInput" name="streamToken">
+    </md-input-container>
+    <button md-raised-button color="primary" (click)="setupStream()">START</button>
+  </md-card>
+</p>
+<p>
+  <md-card>
+    <div id="video-container">
+      <video id="red5pro-subscriber"></video>
+   </div>
+  </md-card>
 </p>
