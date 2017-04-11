@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { AuthService } from './auth.service'
+import { Router } from '@angular/router';
+import { AuthService } from './auth.service';
 
 @Component({
   selector: 'app-root',
@@ -9,7 +10,8 @@ import { AuthService } from './auth.service'
 })
 export class AppComponent {
   title = 'app works!';
-  constructor(public auth: AuthService) {
+  constructor(public auth: AuthService, public route: Router) {
+    this.route.navigateByUrl("/login");
 
     /* Test login */
     this.auth.login("dailypctips@gmail.com", "1234").subscribe(data => {
