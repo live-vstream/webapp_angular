@@ -14,8 +14,8 @@ export class AppComponent {
     this.route.navigateByUrl("/login");
 
     /* Test login */
-    this.auth.login("dailypctips@gmail.com", "1234").subscribe(data => {
-      console.log(data);
-    });
+    // this.auth.login("dailypctips@gmail.com", "1234").subscribe(data => {
+    //   console.log(data);
+    // });
   }
 }

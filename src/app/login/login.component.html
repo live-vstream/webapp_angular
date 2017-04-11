@@ -1,3 +1,21 @@
-<p>
-  login works!
-</p>
+<md-card>
+  <form class="login">
+  <h1 color="primary">Subscriber login</h1>
+    <p>
+    <md-input-container>
+      <input mdInput placeholder="Email" type="email" [(ngModel)]="inputEmail" name="email">
+    </md-input-container>
+    </p>
+    <p>
+    <md-input-container>
+      <input mdInput placeholder="Password" type="password" [(ngModel)]="inputPassword" name="password">
+    </md-input-container>
+    </p>
+    <p>
+    <button md-raised-button color="primary" (click)="onLogin()">Login</button>
+    </p>
+
+      <md-spinner *ngIf="isLoading" style="height: 50px; width: 50px; display: inline-block;"></md-spinner>
+
+  </form>
+</md-card>
