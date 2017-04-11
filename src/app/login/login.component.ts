@@ -46,6 +46,7 @@ export class LoginComponent implements OnInit {
         } else {
           this.snackbar.open("Success!");
           // now we can safely use this.router to navigate to dashboard
+          this.router.navigateByUrl('/dashboard')
         }
       });
 
