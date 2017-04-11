@@ -23,8 +23,7 @@ export class AppComponent {
   }
 
   logOut() {
-    this.auth.setUser(null);
-    this.auth.isLoggedIn = false;
+    this.auth.logOut();
     // not the best way to protect routes, but i'll just use this for now
     this.route.navigateByUrl("/login");
   }
