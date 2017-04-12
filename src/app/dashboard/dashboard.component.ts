@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { MdSnackBar, MdSpinner } from '@angular/material';
+
+import { AuthService } from '../auth.service';
 
 declare var red5prosdk: any;
 
@@ -14,9 +17,10 @@ export class DashboardComponent implements OnInit {
   public tokenInput: string;
   public streamInitialized: boolean = false;
 
-  constructor() { }
+  constructor(public snackbar: MdSnackBar) { }
 
   ngOnInit() {
+
   }
 
   setupStream() {
@@ -52,12 +56,13 @@ export class DashboardComponent implements OnInit {
       })
       .then(function() {
         // Invoke the playback action
-        that.streamInitialized = true
+        that.streamInitialized = true;
         return subscriber.play();
       })
       .catch(function(error) {
         // A fault occurred while trying to initialize and subscribe to the stream.
         console.error(error);
+        that.snackbar.open("Error initializing stream");
       });
 
   }
