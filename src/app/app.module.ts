@@ -11,11 +11,12 @@ import { CustomMaterialModule } from './custom-material/custom-material.module'
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { AuthService } from './auth.service';
+import { AuthGuard} from './auth-guard';
 import { DashboardComponent } from './dashboard/dashboard.component';
 
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
-  { path: 'dashboard', component: DashboardComponent }
+  { path: 'dashboard', component: DashboardComponent, canActivate: [ AuthGuard ] }
 ];
 
 @NgModule({
@@ -33,7 +34,7 @@ const appRoutes: Routes = [
     MaterialModule.forRoot(),
     CustomMaterialModule
   ],
-  providers: [ AuthService ],
+  providers: [ AuthService, AuthGuard ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
