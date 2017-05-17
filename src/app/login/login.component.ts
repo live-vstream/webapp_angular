@@ -41,7 +41,8 @@ export class LoginComponent implements OnInit {
       })
       .subscribe(data => {
         this.isLoading = false;
-        if(data.status == 401) {
+        console.log(data.user);
+        if(data.status == 401 || data.user.role != 'Subscriber') {
           this.snackbar.open("Invalid email/password.");
         } else {
           this.snackbar.open("Success!");
