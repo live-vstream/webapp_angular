@@ -5,12 +5,14 @@ import { HttpModule } from '@angular/http';
 import { RouterModule, Routes } from '@angular/router';
 import { MaterialModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AuthModule } from './auth/auth.module';
 
 import { CustomMaterialModule } from './custom-material/custom-material.module'
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { AuthService } from './auth.service';
+import { StreamService } from './stream.service';
 import { AuthGuard} from './auth-guard';
 import { DashboardComponent } from './dashboard/dashboard.component';
 
@@ -32,9 +34,10 @@ const appRoutes: Routes = [
     HttpModule,
     BrowserAnimationsModule,
     MaterialModule.forRoot(),
-    CustomMaterialModule
+    CustomMaterialModule,
+    AuthModule
   ],
-  providers: [ AuthService, AuthGuard ],
+  providers: [ AuthService, AuthGuard, StreamService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

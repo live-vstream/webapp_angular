@@ -48,6 +48,7 @@ export class LoginComponent implements OnInit {
           this.snackbar.open("Success!");
           console.log("user data is " + data);
           this.auth.setUser(data);
+          localStorage.setItem('token', data.token);
           // now we can safely use this.router to navigate to dashboard
           this.router.navigateByUrl('/dashboard')
         }

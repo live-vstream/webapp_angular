@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MdSnackBar, MdSpinner } from '@angular/material';
 
+import { StreamService } from '../stream.service';
+
 import { AuthService } from '../auth.service';
 
 declare var red5prosdk: any;
@@ -17,11 +19,22 @@ export class DashboardComponent implements OnInit {
   public tokenInput: string;
   public streamInitialized: boolean = false;
 
-  constructor(public snackbar: MdSnackBar) { }
+  // streams that are live
+  public activeStreams: any[]; 
+
+  constructor(public snackbar: MdSnackBar, public streamService: StreamService) { }
 
   ngOnInit() {
-
+    this.streamService.getActiveStreams()
+      .subscribe(data => {
+        console.log('act streams: ', data);
+        if(data) {
+          this.activeStreams = data;
+        }
+      })
   }
+
+
 
   setupStream() {
     if(!this.tokenInput) {
