@@ -16,4 +16,10 @@ export class StreamService {
       .map(res => res.json());
   }
 
+  createStream(title: string) {
+    return this.http.post(this.apiUrl + '/', {
+      title: title
+    }).map(res => res.json());
+  }
+
 }

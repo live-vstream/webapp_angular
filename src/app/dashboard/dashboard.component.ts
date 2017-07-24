@@ -20,20 +20,45 @@ export class DashboardComponent implements OnInit {
   public streamInitialized: boolean = false;
 
   private streams: any[];
+  private title: string = null;
+
+  private createdStream: any;
+
+  private createStreamStatus: string = null;
 
   constructor(public streamService: StreamService) { }
 
   ngOnInit() {
+    this.loadStreams();
+  }
+
+  createStream() {
+    this.createStreamStatus = 'pending';
+    this.streamService.createStream(this.title)
+        .subscribe(data => {
+          if(data) {
+            this.createdStream = data.stream;
+            this.createStreamStatus = 'success';
+            this.loadStreams();
+          }
+        });
+  }
+
+  loadStreams() {
     this.streamService.getActiveStreams()
       .subscribe(data => {
         console.log('act streams: ', data);
         if(data) {
           this.streams = data.streams;
         }
-      })
+      });
   }
 
-
+  closeAlert(alert) {
+    this.createdStream = null;
+    this.createStreamStatus = null;
+    this.title = null;
+  }
 
   setupStream() {
     if(!this.tokenInput) {
