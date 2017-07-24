@@ -16,18 +16,26 @@ export class LoginComponent implements OnInit {
 
   public formIsValid: boolean = true;
   public isLoading: boolean = false;
+  private errorMessage: string = null;
 
-  constructor(public auth: AuthService, public snackbar: MdSnackBar, public router: Router) {
+  constructor(public auth: AuthService, public router: Router) {
 
   }
 
   ngOnInit() {
   }
 
+  showErrorMessage(msg: string) {
+    this.errorMessage = msg;
+    setTimeout(() => {
+      this.errorMessage = null;
+    }, 4000);
+  }
+
   onLogin() {
     if(!this.inputEmail || !this.inputPassword) {
       this.formIsValid = false;
-      this.snackbar.open("Please enter valid email address and password.");
+      this.showErrorMessage("Please enter valid email address and password.");
     } else {
       this.formIsValid = true;
       this.isLoading = true;
@@ -36,16 +44,17 @@ export class LoginComponent implements OnInit {
       this.auth.login(this.inputEmail, this.inputPassword).catch(err => {
         this.isLoading = false;
         console.log("error is " + err);
-        this.snackbar.open("Invalid email/password.");
+        this.showErrorMessage("Invalid email/password.");
         return Observable.throw(err);
       })
       .subscribe(data => {
         this.isLoading = false;
         console.log(data.user);
         if(data.status == 401 || data.user.role != 'Subscriber') {
-          this.snackbar.open("Invalid email/password.");
+          this.showErrorMessage("Invalid email/password.");
+          
         } else {
-          this.snackbar.open("Success!");
+          //this.snackbar.open("Success!");
           console.log("user data is " + data);
           this.auth.setUser(data);
           localStorage.setItem('token', data.token);

@@ -1,13 +1,5 @@
-<md-toolbar color="primary">
-
-  <span>Live Stream</span>
-
-  <span class="app-toolbar-filler"></span>
-  <button md-button *ngIf="auth.isLoggedIn">HOME</button>
-  <span class="nav-spacer"></span>
-  <button md-button *ngIf="auth.isLoggedIn" (click)="logOut()">LOGOUT</button>
-</md-toolbar>
-<div class="app-content">
+<app-navbar></app-navbar>
+<div class="container-fluid">
   <router-outlet></router-outlet>
 </div>
 

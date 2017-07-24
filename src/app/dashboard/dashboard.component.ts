@@ -22,7 +22,7 @@ export class DashboardComponent implements OnInit {
   // streams that are live
   public activeStreams: any[]; 
 
-  constructor(public snackbar: MdSnackBar, public streamService: StreamService) { }
+  constructor(public streamService: StreamService) { }
 
   ngOnInit() {
     this.streamService.getActiveStreams()
@@ -75,7 +75,7 @@ export class DashboardComponent implements OnInit {
       .catch(function(error) {
         // A fault occurred while trying to initialize and subscribe to the stream.
         console.error(error);
-        that.snackbar.open("Error initializing stream");
+       // that.snackbar.open("Error initializing stream");
       });
 
   }

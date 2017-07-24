@@ -22,9 +22,5 @@ export class AppComponent {
     // });
   }
 
-  logOut() {
-    this.auth.logOut();
-    // not the best way to protect routes, but i'll just use this for now
-    this.route.navigateByUrl("/login");
-  }
+  
 }
