@@ -19,8 +19,7 @@ export class DashboardComponent implements OnInit {
   public tokenInput: string;
   public streamInitialized: boolean = false;
 
-  // streams that are live
-  public activeStreams: any[]; 
+  private streams: any[];
 
   constructor(public streamService: StreamService) { }
 
@@ -29,7 +28,7 @@ export class DashboardComponent implements OnInit {
       .subscribe(data => {
         console.log('act streams: ', data);
         if(data) {
-          this.activeStreams = data;
+          this.streams = data.streams;
         }
       })
   }
